@@ -62,12 +62,17 @@ public class Car implements CarRequirements {
      * @return 'true' or 'false'
      */
     public Boolean removePassenger (Passenger p) {
-        if (seatsRemaining() == capacity) { // When no one is in the car.
+        if (seatsRemaining() == capacity) { // No one is in the car.
             return false;
         }
         else {
-            passengers.remove(p);
-            return true;
+            if (passengers.contains(p)) { // Passenger is IN car -> they CAN be removed
+                passengers.remove(p);
+                return true;
+            }
+            else {
+                return false;
+            }
         }
     }
 
