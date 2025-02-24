@@ -42,12 +42,16 @@ public class Car implements CarRequirements {
      * @return 'true' or 'false'
      */
     public Boolean addPassenger(Passenger p) {
-        if (seatsRemaining() > 0) {
-            passengers.add(p);
-            return true;
-        }
-        else {
+        if (passengers.contains(p)) {
             return false;
+        } else {
+            if (seatsRemaining() > 0) {
+                passengers.add(p);
+                return true;
+            }
+            else {
+                return false;
+            }  
         }
     }
 
@@ -81,14 +85,16 @@ public class Car implements CarRequirements {
         }
     }
     public static void main(String[] args) {
-        Car myCar = new Car(10);
-        System.out.println(myCar.passengers.size());
-        Passenger Tammy = new Passenger("Tammy");
-        myCar.addPassenger(Tammy);
-        System.out.println(myCar.passengers.size());
-        System.out.println(myCar.seatsRemaining());
-        myCar.removePassenger(Tammy);
-        System.out.println(myCar.seatsRemaining());
+
+        Car myCar = new Car(2);
+        Passenger tammy = new Passenger("Tammy");
+
+        tammy.boardCar(myCar);
+        myCar.printManifest(); 
+
+        tammy.boardCar(myCar); 
+    
+        
 
     }
 
