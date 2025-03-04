@@ -17,7 +17,9 @@ public class Engine implements EngineRequirements {
         this.maxFuelLevel = maxFuelLevel;
     }
 
-
+    /**
+     * Accessor for fuel type 
+     */
     public FuelType getFuelType() {
         return this.f; // "this."
     }
