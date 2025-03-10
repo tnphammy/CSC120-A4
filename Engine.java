@@ -21,13 +21,19 @@ public class Engine implements EngineRequirements {
      * Accessor for fuel type 
      */
     public FuelType getFuelType() {
-        return this.f; // "this."
+        return this.f; 
     }
 
+    /**
+     * Accessor for the maximum fuel level of the engine
+     */
     public double getMaxFuel() {
         return 0;
     }
 
+    /**
+     * Accessor for the current fuel level of the engine
+     */
     public double getCurrentFuel() {
         return 0;
     }
@@ -44,9 +50,9 @@ public class Engine implements EngineRequirements {
     /**
      * Decrease the current fuel level
      * Print information (i.e. remaining fuel level, and warning if fuel levels are low)
-     * Return `True` if the fuel level > 0 and `False` otherwise.
-     * @param currentFuelLevel
-     * @return
+     * Return `true` if the fuel level > 0 and `false` otherwise.
+     * 
+     * @return T/F
      */
     public Boolean go() { 
         if (this.currentFuelLevel > 10) { // Prevents the train from having negative or no fuel levels.

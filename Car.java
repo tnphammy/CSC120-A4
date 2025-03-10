@@ -1,11 +1,10 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Car implements CarRequirements {
 
     // Attributes
-    public int capacity;
-    public ArrayList<Passenger> passengers;
+    private int capacity;
+    private ArrayList<Passenger> passengers;
     
 
      /**
@@ -79,7 +78,6 @@ public class Car implements CarRequirements {
     /**
      * Print a list of all passengers on board.
      * Print "This car is EMPTY." if there is no one on board
-     * @param args
      */
     public void printManifest() {
         if (seatsRemaining() == capacity) { // When no one is in the car.
@@ -97,7 +95,7 @@ public class Car implements CarRequirements {
         tammy.boardCar(myCar);
         myCar.printManifest(); 
 
-        tammy.boardCar(myCar); 
+
     
         
 
