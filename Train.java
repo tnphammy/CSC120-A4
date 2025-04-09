@@ -5,16 +5,19 @@ public class Train implements TrainRequirements {
     // Attributes
     private Engine engine; 
     private ArrayList<Car> cars;
+    private int nCars;
+    private int passengerCapacity; // Passenger Capacity of ONE car
 
     /**
      * Constructors 
      */
     public Train(FuelType fuelType, double fuelCapacity, int nCars, int passengerCapacity) {
         this.engine = new Engine(fuelType, fuelCapacity, fuelCapacity); // because currentFuelLevel = maxFuelLevel in the beginning
+
         //Initialize Car list:
-        this.cars = new ArrayList<>(); 
-        for (int i = 0; i < nCars; i++) {
-            this.cars.add(new Car(passengerCapacity));
+        cars = new ArrayList<Car>(nCars); 
+        for (int i = 0; i <= nCars; i++) {
+            cars.add(new Car(passengerCapacity));
         }
 
         
@@ -34,15 +37,13 @@ public class Train implements TrainRequirements {
         return cars.get(i);
     }
 
-    /**
+
+    /** 
      * Accessor for maximum capacity among all cars
      */
     public int getMaxCapacity() {
-        int maxCapacity = 0;
-        for (int i = 0; i < cars.size(); i++) {
-            maxCapacity += this.cars.get(i).capacity;
-        }
-        return maxCapacity;
+        int totalCapacity = nCars * passengerCapacity;
+        return totalCapacity;
     }
 
 
@@ -67,7 +68,7 @@ public class Train implements TrainRequirements {
 
         // Add passengers from each car together
         for (int i = 0; i < cars.size(); i++) {
-            allPassengers.addAll(cars.get(i).passengers); 
+            allPassengers.addAll(cars.get(i).passengers(); 
         }
 
         // When there are no passengers
