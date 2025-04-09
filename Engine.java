@@ -13,7 +13,7 @@ public class Engine implements EngineRequirements {
      */
     public Engine(FuelType f, double currentFuelLevel, double maxFuelLevel) {
         this.f = f;
-        this.currentFuelLevel = currentFuelLevel;
+        this.currentFuelLevel = maxFuelLevel; // Fuel is FULL at the beginning
         this.maxFuelLevel = maxFuelLevel;
     }
 
@@ -28,14 +28,14 @@ public class Engine implements EngineRequirements {
      * Accessor for the maximum fuel level of the engine
      */
     public double getMaxFuel() {
-        return 0;
+        return this.maxFuelLevel;
     }
 
     /**
      * Accessor for the current fuel level of the engine
      */
     public double getCurrentFuel() {
-        return 0;
+        return this.currentFuelLevel;
     }
 
     /**
@@ -55,16 +55,15 @@ public class Engine implements EngineRequirements {
      * @return T/F
      */
     public Boolean go() { 
-        if (this.currentFuelLevel > 10) { // Prevents the train from having negative or no fuel levels.
-            this.currentFuelLevel -= 10;
-            System.out.println("Fuel Remaining: " + this.currentFuelLevel + ".");
-            return true;
+        if(this.currentFuelLevel - 10 <= 0) {
+            System.out.println("Warning: Engine does not have enough fuel to keep going.");
+            return false;
         } 
         else {
-            System.out.println("Warning: Fuel Remaining: " + this.currentFuelLevel + "! \nEnough for one more run.");
-            return false;
+            this.currentFuelLevel -= 10;
+            System.out.println("Fuel remaining: " + this.currentFuelLevel);
+            return true;
         }
-
     }
 
     public String toString() {
@@ -79,6 +78,7 @@ public class Engine implements EngineRequirements {
         // System.out.println(myOtherEngine);
 
         Engine myEngine = new Engine(FuelType.ELECTRIC, 100.0, 100.0);
+        System.out.println(myEngine.getCurrentFuel());
         while (myEngine.go()) {
             System.out.println("Choo choo!");
         }
