@@ -16,7 +16,7 @@ public class Train implements TrainRequirements {
 
         //Initialize Car list:
         cars = new ArrayList<Car>(nCars); 
-        for (int i = 0; i <= nCars; i++) {
+        for (int i = 0; i < nCars; i++) {
             cars.add(new Car(passengerCapacity));
         }
 
@@ -60,25 +60,33 @@ public class Train implements TrainRequirements {
 
     /**
      * Print all passengers across all cars.
-     * Print accordingly if there are none.
      */
     public void printManifest() {
-        // Create ArrayList of all passengers
-        ArrayList<Passenger> allPassengers = new ArrayList<>();
+        if (!cars.isEmpty()) { // If the cars are not empty.
+            System.out.println("Passengers on board: ");
 
-        // Add passengers from each car together
-        for (int i = 0; i < cars.size(); i++) {
-            allPassengers.addAll(cars.get(i).passengers(); 
-        }
-
-        // When there are no passengers
-        if (allPassengers.size() == 0) {
-            System.out.println("The train is EMPTY!");
+            // Loops through every car.
+            for(int i = 0; i < cars.size(); i++) {
+                System.out.println("\n Car number " + (i+1) + ": ");
+                getCar(i).printManifest();
+            }
         }
         else {
-            System.out.println("Total passengers on train: " + allPassengers);
+            System.out.println("There are no cars, thus no passengers on board.");
         }
+    }
 
+    public static void main(String[] args) {
+        Train myTrain = new Train(FuelType.ELECTRIC, 100, 5, 10);
+        Car myCar = myTrain.getCar(0);
+        Passenger tammy = new Passenger("Tammy");
+        tammy.boardCar(myCar);
+
+        myTrain.printManifest();
+        
+        
     }
 
 }
+
+

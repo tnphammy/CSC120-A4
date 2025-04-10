@@ -5,8 +5,8 @@ public class Car implements CarRequirements {
     // Attributes
     private int capacity;
     private ArrayList<Passenger> passengers;
-    
 
+    
      /**
      * Constructor for Car
      * @param capacity Car's passenger limit
